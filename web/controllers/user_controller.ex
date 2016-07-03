@@ -1,6 +1,8 @@
 defmodule Rumbl.UserController do
   use Rumbl.Web, :controller
 
+  alias Rumbl.User
+
   plug :authenticate_user when action in [:index, :show]
 
   def index(conn, _params) do
@@ -14,8 +16,6 @@ defmodule Rumbl.UserController do
 
     render conn, "show.html", user: user
   end
-
-  alias Rumbl.User
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
